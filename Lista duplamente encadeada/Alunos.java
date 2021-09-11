@@ -12,6 +12,10 @@ public class Aluno {
 
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public String toString(){
         return "Aluno: "+nome+"| Matricula: "+matricula+"| Nota: "+nota+"| Curso: "+curso;
     }
