@@ -1,38 +1,44 @@
 public class Pilha {
-    No pilha[];
-    int TAM;
-    int topo = -1;
+    No top;
+    No inicio;
 
-    public Pilha(int tam) {
-        pilha = new No[tam];
-        this.TAM = tam;
+    Pilha() {
+        inicio = null;
+        top = null;
     }
 
-    public void empilha(No n) {
-        if (topo == -1 || topo < (this.TAM - 1)) {
-            topo = topo + 1;
-            pilha[topo] = n;
-        } else {
-            System.out.println(" === PILHA CHEIA === ");
+    boolean vazia() {
+        return top == null;
+    }
+
+    public void empilha(No novo) {
+        if(inicio == null){
+            inicio = novo;
+            top  = novo;
+        }
+        else{
+            novo.setProx(top);
+            top = novo;
         }
     }
 
-    public No desempilha() {
-        if (topo != -1) {
-            No temp = pilha[topo];
-            pilha[topo] = null;
-            topo = topo - 1;
-            return temp;
+    public void desempilha(){
+        if (!vazia()) {
+            top = top.getProx();
         } else {
-            System.out.println(" === PILHA VAZIA ====");
-            return null;
+            System.out.println(" === PILHA VAZIA === ");
         }
     }
 
-    public void imprimePilha() {
+    public void imprimirPilha() {
         System.out.println(" === IMPRIME PILHA === ");
-        for (int i = this.topo; i >= 0; i--) {
-            System.out.println("Posição: [" + i + "] " + pilha[i].tostring());
+        No p;
+        p = top;
+        while (p != null) {
+            System.out.println(p.toString());
+            p = p.getProx();
         }
+
     }
+
 }
