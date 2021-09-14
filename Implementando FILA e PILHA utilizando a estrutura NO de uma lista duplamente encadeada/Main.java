@@ -1,32 +1,28 @@
 class Main {
     public static void main(String[] args) {
-        Fila fila = new Fila(5);
-        Pilha pilha = new Pilha(5);
-
-
         System.out.println(" ================ IMPLEMENTANDO A FILA ================ ");
+        Fila fila = new Fila();
         for (int i = 0; i < 5; i++) {
-            No no = new No(i);
-            fila.insere(no);
+            fila.insere(i);
         }
         System.out.println(" === VALORES INSERIDOS === ");
-        fila.imprimeLista();
-        fila.remove();
+        System.out.println(fila.imprimirFila());
+
         fila.remove();
         System.out.println(" === VALORES REMOVIDOS === ");
-        fila.imprimeLista();
-
+        System.out.println(fila.imprimirFila());
 
         System.out.println(" ================ IMPLEMENTANDO A PILHA ================ ");
+        Pilha pilha = new Pilha();
         for (int i = 0; i < 5; i++) {
-            No no = new No(i);
-            pilha.empilha(no);
+            No novo = new No(i);
+            pilha.empilha(novo);
         }
         System.out.println(" === VALORES INSERIDOS === ");
-        pilha.imprimePilha();
-        pilha.desempilha();
+        pilha.imprimirPilha();
+
         pilha.desempilha();
         System.out.println(" === VALORES REMOVIDOS === ");
-        pilha.imprimePilha();
+        pilha.imprimirPilha();
     }
 }
