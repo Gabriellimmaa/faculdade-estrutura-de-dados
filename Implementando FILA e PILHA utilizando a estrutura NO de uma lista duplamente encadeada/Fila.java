@@ -1,46 +1,57 @@
 public class Fila {
-    int TAM = 10;
-    No fila[];
-    int comeco = -1;
-    int fim = -1;
+    No inicio;
+    No fim;
 
-    public Fila(int tam) {
-        fila = new No[tam];
-        this.TAM = tam;
+    public boolean vazia() {
+        return inicio == null && fim == null;
     }
 
-    public void insere(No n) {
-        if (comeco == -1) {
-            comeco = 0;
-            fim = 0;
-            fila[fim] = n;
-        } else if (fim < (TAM - 1)) {
-            fim = fim + 1;
-            fila[fim] = n;
+    public void insere(int dado) {
+        No novo = new No(dado);
+        if (vazia()) {
+            inicio = novo;
+            fim = novo;
+            fim.setProx(inicio);
         } else {
-            System.out.println(" === FILA CHEiA === ");
+            novo.setProx(inicio);
+            fim.setProx(novo);
+            fim = novo;
         }
     }
 
-    public No remove() {
-        if (this.comeco != -1) {
-            No temp = fila[comeco];
-            for (int i = comeco; i < fim; i++) {
-                fila[i] = fila[i + 1];
+    public void remove() {
+        if (vazia()) {
+            System.out.println("=== FILA VAZIA ===");
+        } else if (inicio == fim) {
+            inicio = null;
+            fim = null;
+        } else {
+            inicio = inicio.getProx();
+        }
+    }
+
+    public String imprimirFila() {
+        System.out.println(" === IMPRIME FILA === ");
+
+        String listados = "";
+        if (vazia()) {
+            return "=== FILA VAZIA ===";
+        } else if (inicio == fim) {
+            listados = "Valor: [" + inicio.getValor()+"]";
+        } else {
+            No aux = inicio;
+            if (aux == fim.getProx()) {
+                listados = listados + "Valor: [" + aux.getValor()+"]\n";
+                aux = aux.getProx();
             }
-            fila[fim] = null;
-            fim = fim - 1;
-            return temp;
-        } else {
-            System.out.println(" === LISTA VAZIA === ");
-            return null;
+            while (aux != fim.getProx()) {
+                listados = listados +"Valor: [" + aux.getValor()+"]\n";
+                aux = aux.getProx();
+            }
         }
+        return listados;
+
     }
 
-    public void imprimeLista() {
-        System.out.println(" === IMPRIME LISTA === ");
-        for (int i = this.comeco; i <= this.fim; i++) {
-            System.out.println("Posição: [" + i + "] " + fila[i].tostring());
-        }
-    }
+
 }
