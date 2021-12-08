@@ -1,32 +1,22 @@
-package ordenacao_simples;
-
-
-public class Ordenacao_simples {
-
+public class Main {
     public static void main(String[] args) {
         int max = 150000; 
         int min = 1; 
         int range = max - min + 1; 
         int tamVet = 10;
         
-        int vet[] = new int[tamVet];
-        
-        for (int i = 0; i < tamVet; i++) {
-            vet[i] = (int)(Math.random() * range) + min;            
-        }  
-        for (int i = 0; i < tamVet ; i++) {
-             vet[i] = tamVet -i;            
-        }
+        int vet[] = new int[] {21, 71, 7, 1, 3, 2, 15, 12};
+
         imprimeVet(vet);
-        Ordenacao_simples ordena = new Ordenacao_simples();
-        //vet = ordena.bublesort(vet);
+        Main ordena = new Main();
+        vet = ordena.bublesort(vet);
         //vet = ordena.selectionSort(vet);
-        vet = ordena.insertionSort(vet);
+        //vet = ordena.insertionSort(vet);
     }
     public static void imprimeVet(int vet[]){
         System.out.println("");
         for (int i = 0; i < vet.length; i++) {
-            System.out.print(""+vet[i]+"|");            
+            System.out.print(""+vet[i]+" | ");
         }        
     }
     public int[] bublesort(int vet[]){
